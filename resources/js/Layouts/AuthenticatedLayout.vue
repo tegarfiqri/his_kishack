@@ -25,7 +25,7 @@ export default {
 }
 </script>
 <template>
-    <div class="flex h-screen">
+    <div class="flex min-h-screen">
         <!-- Sidebar -->
         <Sidebar :isOpen="isSidebarOpen" />
 
@@ -36,7 +36,7 @@ export default {
 
             <!-- Main Content -->
             <main class="flex-1 p-4">
-                <h2 class="text-2xl font-bold">Main Content</h2>
+                <slot />
                 <!-- Add your main content here -->
             </main>
         </div>

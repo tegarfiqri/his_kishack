@@ -5,7 +5,7 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 
 <template>
     <div :class="[
-        'fixed inset-0 z-30 bg-gray-800 text-white transition-transform transform md:relative md:translate-x-0',
+        'min-h-screen fixed inset-0 z-30 bg-gray-800 text-white transition-transform transform md:relative md:translate-x-0',
         isOpen ? 'translate-x-0 relative' : '-translate-x-full fixed',
         'w-64 flex-none'
     ]">
