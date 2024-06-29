@@ -15,6 +15,9 @@ import { Link } from '@inertiajs/vue3';
                 <li class="hover:bg-gray-700">
                     <Link class="p-4 block" :href="route('users.index')">User</Link>
                 </li>
+                <li class="hover:bg-gray-700">
+                    <Link class="p-4 block" :href="route('roles.index')">Role</Link>
+                </li>
             </ul>
         </nav>
     </div>
