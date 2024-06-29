@@ -1,6 +1,6 @@
 <script setup>
+import { Link } from '@inertiajs/vue3';
 
-import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 </script>
 
 <template>
@@ -12,9 +12,9 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
         <div class="p-4 text-2xl font-bold">CMS Menu</div>
         <nav class="flex-1">
             <ul>
-                <!-- <li class="p-4 hover:bg-gray-700">
-                    <router-link to="/dashboard" class="block">Dashboard</router-link>
-                </li> -->
+                <li class="hover:bg-gray-700">
+                    <Link class="p-4 block" :href="route('users.index')">User</Link>
+                </li>
             </ul>
         </nav>
     </div>

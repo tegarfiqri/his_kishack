@@ -5,16 +5,24 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { Head, useForm, usePage } from '@inertiajs/vue3';
-
+import SelectBox from '@/Components/SelectBox.vue';
+import InputFIle from '@/Components/InputFIle.vue';
+const props = defineProps({
+    roles: {
+        type: Object,
+    }
+});
 
 const form = useForm({
     name: '',
     email: '',
     password: '',
     password_confirmation: '',
+    role_id: '',
+    image: '',
 });
 const submit = () => {
-    form.post(route('users.store'), {
+    form.post(route('users.store'), form, { forceFormData: true, }, {
         onFinish: () => form.reset('password', 'password_confirmation'),
     });
 };
@@ -48,6 +56,20 @@ const submit = () => {
                                 autocomplete="username" />
 
                             <InputError class="mt-2" :message="form.errors.email" />
+                        </div>
+
+                        <div class="mt-4">
+                            <InputLabel for="role_id" value="Role" />
+
+                            <SelectBox id="role_id" class="mt-1 block w-full" v-model="form.role_id" :options="roles"
+                                required>
+                            </SelectBox>
+                        </div>
+
+                        <div class="mt-4">
+                            <InputLabel for="image" value="Avatar" />
+
+                            <InputFIle id="image" type="file" class="mt-1 block w-full" v-model="form.image" required />
                         </div>
 
                         <div class="mt-4">

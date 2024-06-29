@@ -4,10 +4,15 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
-import { Head, useForm, usePage } from '@inertiajs/vue3';
+import SelectBox from '@/Components/SelectBox.vue';
+import InputFIle from '@/Components/InputFIle.vue';
+import { Head, useForm, router, usePage } from '@inertiajs/vue3';
 
 const props = defineProps({
     data: {
+        type: Object,
+    },
+    roles: {
         type: Object,
     }
 });
@@ -17,9 +22,12 @@ const form = useForm({
     email: props.data.email,
     password: '',
     password_confirmation: '',
+    role_id: props.data.role_id,
+    image: '',
+    _method: 'put',
 });
 const submit = () => {
-    form.put(route('users.update'), {
+    router.post(route('users.update', props.data.id), form, {
         onFinish: () => form.reset('password', 'password_confirmation'),
     });
 };
@@ -53,6 +61,20 @@ const submit = () => {
                                 autocomplete="username" />
 
                             <InputError class="mt-2" :message="form.errors.email" />
+                        </div>
+
+                        <div class="mt-4">
+                            <InputLabel for="role_id" value="Role" />
+
+                            <SelectBox id="role_id" class="mt-1 block w-full" v-model="form.role_id" :options="roles"
+                                required>
+                            </SelectBox>
+                        </div>
+
+                        <div class="mt-4">
+                            <InputLabel for="image" value="Image" />
+
+                            <InputFIle id="image" class="mt-1 block w-full" v-model="form.image" />
                         </div>
 
                         <div class="mt-4">
