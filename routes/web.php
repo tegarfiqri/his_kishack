@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\ApiController;
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ExploreController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -34,9 +38,13 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
+    Route::resource('categories', CategoryController::class);
+    Route::resource('articles', ArticleController::class);
+    Route::resource('explore', ExploreController::class);
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/get-permissions', [ApiController::class, 'getPermissions'])->name('get-permissions');
 });
 
 require __DIR__ . '/auth.php';

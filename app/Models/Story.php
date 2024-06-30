@@ -5,13 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class RolePermission extends Model
+class Story extends Model
 {
     use HasFactory;
+
     protected $guarded = ['id'];
 
-    public function permissions()
+    public function user()
     {
-        return $this->hasMany(Permission::class, 'id', 'permission_id');
+        return $this->belongsTo(User::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }

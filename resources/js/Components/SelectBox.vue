@@ -14,7 +14,7 @@ const input = ref(null);
 
 <template>
     <select
-        class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+        class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full"
         ref="input" v-model="model">
         <option v-if="options" v-for="option in options" :value="option.id">{{ option.name }}</option>
         <option v-else value="">No options</option>

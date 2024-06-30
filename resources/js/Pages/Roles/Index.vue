@@ -28,6 +28,10 @@ const onSortChange = () => {
     }
 };
 
+const checkPermission = (permission) => {
+    return usePage().props.permissions.includes(permission);
+}
+
 const onPageChange = (number) => {
     if (number < 1 || number > props.page) return;
     pageNumber.value = number;
@@ -46,7 +50,7 @@ const repopulateData = () => {
 }
 
 const onDelete = (item) => {
-    if (confirm('Are you sure you want to delete this user?')) {
+    if (confirm('Are you sure you want to delete this role?')) {
         router.delete(route('roles.destroy', item.id), { preserveScroll: true, onFinish: () => repopulateData() });
     }
 }
@@ -64,7 +68,8 @@ const onDelete = (item) => {
                 <TextInput @input="onSearch" v-model="search" type="text" class="my-2" placeholder="Search..."
                     :value="search"></TextInput>
 
-                <CreateButton :route="route('roles.create')">Add Role</CreateButton>
+                <CreateButton v-if="checkPermission('Create Roles')" :route="route('roles.create')">Add Role
+                </CreateButton>
             </div>
 
             <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
@@ -84,11 +89,16 @@ const onDelete = (item) => {
                         <td class="p-4">{{ item.id }}</td>
                         <td class="p-4">{{ item.name }}</td>
                         <td class="p-4">
-                            <Link class="mr-2 bg-yellow-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                            <Link v-if="checkPermission('Update Roles')"
+                                class="mr-2 bg-yellow-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                                 :href="route('roles.edit', item.id)">Edit</Link>
-                            <button @click="onDelete(item)"
+                            <button v-else disabled
+                                class="mr-2 bg-yellow-100 text-white font-bold py-2 px-4 rounded">Edit</button>
+                            <button v-if="checkPermission('Delete Roles')" @click="onDelete(item)"
                                 class="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Delete
                             </button>
+                            <button v-else disabled
+                                class="mr-2 bg-red-100 text-white font-bold py-2 px-4 rounded">Delete</button>
                         </td>
                     </tr>
                 </tbody>

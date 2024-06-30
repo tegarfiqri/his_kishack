@@ -6,9 +6,7 @@ use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
-use Illuminate\Validation\Rules;
 
 class RoleController extends Controller
 {

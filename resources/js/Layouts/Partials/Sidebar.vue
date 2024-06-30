@@ -9,7 +9,14 @@ import { Link } from '@inertiajs/vue3';
         isOpen ? 'translate-x-0 relative' : '-translate-x-full fixed',
         'w-64 flex-none'
     ]">
-        <div class="p-4 text-2xl font-bold">CMS Menu</div>
+        <div class="p-4 text-2xl text-blue-500 font-bold">Kishack</div>
+        <div class="py-4">
+            <ul>
+                <li class="hover:bg-gray-700">
+                    <Link class="p-4 block" :href="route('explore.index')">Explore Now</Link>
+                </li>
+            </ul>
+        </div>
         <nav class="flex-1">
             <ul>
                 <li class="hover:bg-gray-700">
@@ -19,9 +26,20 @@ import { Link } from '@inertiajs/vue3';
                     <Link class="p-4 block" :href="route('roles.index')">Role</Link>
                 </li>
             </ul>
+
+            <div class="pt-4">
+                <h2 class="font-bold text-xl ms-4">Master Data</h2>
+                <ul>
+                    <li class="hover:bg-gray-700">
+                        <Link class="p-4 block" :href="route('categories.index')">Category</Link>
+                    </li>
+                    <li class="hover:bg-gray-700">
+                        <Link class="p-4 block" :href="route('articles.index')">Article</Link>
+                    </li>
+                </ul>
+            </div>
         </nav>
     </div>
-
 </template>
 
 <script>

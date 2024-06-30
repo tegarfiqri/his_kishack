@@ -11,7 +11,7 @@ const showingNavigationDropdown = ref(false);
 <template>
     <nav class="bg-white border-b border-gray-100 flex-1 flex flex-col">
         <!-- Primary Navigation Menu -->
-        <div class="max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex">
                     <button class="text-gray-800" @click="$emit('toggle-sidebar')">

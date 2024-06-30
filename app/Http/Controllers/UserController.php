@@ -87,17 +87,17 @@ class UserController extends Controller
             'email' => 'required|string|lowercase|email|max:255|unique:' . User::class . ',email,' . $user->id,
         ]);
         $image = $request->file('image');
-        if ($image) {
-            $image_name = $image->getClientOriginalName();
-            $image->move(public_path('images'), $image_name);
-        }
         $updateData = [
             'name' => $request->name,
             'email' => $request->email,
             'role_id' => $request->role_id,
-            'image_name' => $image_name ?? $user->image_name,
-            'image_path' => $image_name ? 'images/' . $image_name : $user->image_path,
         ];
+        if ($image) {
+            $image_name = $image->getClientOriginalName();
+            $image->move(public_path('images'), $image_name);
+            $updateData['image_name'] = $image_name;
+            $updateData['image_path'] = 'images/' . $image_name;
+        }
         if ($request->password) {
             $request->validate([
                 'password' => ['required', 'confirmed', Rules\Password::defaults()],
