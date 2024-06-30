@@ -5,21 +5,23 @@ import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import { Link } from '@inertiajs/vue3';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 const showingNavigationDropdown = ref(false);
-
+const props = defineProps({
+    isOpen: {
+        type: Boolean,
+    },
+})
 </script>
 <template>
-    <nav class="bg-white border-b border-gray-100 flex-1 flex flex-col">
+    <nav class="bg-gradient-to-t from-blue-800 to-blue-600 border-b border-gray-100 flex-1 flex flex-col">
         <!-- Primary Navigation Menu -->
         <div class="px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex">
                     <button class="text-gray-800" @click="$emit('toggle-sidebar')">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
+                        <FontAwesomeIcon class="text-2xl text-white"
+                            :icon="['fas', isOpen ? 'angle-left' : 'angle-right']" />
                     </button>
                     <!-- Navigation Links -->
                     <!-- <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
@@ -35,6 +37,8 @@ const showingNavigationDropdown = ref(false);
                         <Dropdown align="right" width="48">
                             <template #trigger>
                                 <span class="inline-flex rounded-md">
+                                    <img class="h-8 w-8 rounded-full me-4" :src="$page.props.auth.user.image_path"
+                                        alt="" />
                                     <button type="button"
                                         class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
                                         {{ $page.props.auth.user.name }}
@@ -91,10 +95,10 @@ const showingNavigationDropdown = ref(false);
             <!-- Responsive Settings Options -->
             <div class="pt-4 pb-1 border-t border-gray-200">
                 <div class="px-4">
-                    <div class="font-medium text-base text-gray-800">
+                    <div class="font-medium text-base text-gray-100">
                         {{ $page.props.auth.user.name }}
                     </div>
-                    <div class="font-medium text-sm text-gray-500">{{ $page.props.auth.user.email }}</div>
+                    <div class="font-medium text-sm text-gray-200">{{ $page.props.auth.user.email }}</div>
                 </div>
 
                 <div class="mt-3 space-y-1">

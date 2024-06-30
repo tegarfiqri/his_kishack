@@ -5,8 +5,8 @@ import { Link } from '@inertiajs/vue3';
 
 <template>
     <div :class="[
-        'min-h-screen fixed inset-0 z-30 bg-gray-800 text-white transition-transform transform md:relative md:translate-x-0',
-        isOpen ? 'translate-x-0 relative' : '-translate-x-full fixed',
+        'min-h-screen inset-0 z-30 bg-gray-800 text-white transition-transform transform ',
+        isOpen ? 'lg:relative lg:translate-x-0' : '-translate-x-full fixed',
         'w-64 flex-none'
     ]">
         <div class="p-4 text-2xl text-blue-500 font-bold">Kishack</div>

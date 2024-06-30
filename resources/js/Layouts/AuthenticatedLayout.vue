@@ -14,7 +14,7 @@ export default {
     },
     data() {
         return {
-            isSidebarOpen: false
+            isSidebarOpen: true
         }
     },
     methods: {
@@ -32,7 +32,7 @@ export default {
         <!-- Header and Main Content -->
         <div class="flex-1 flex-shrink flex-col">
             <!-- Header -->
-            <Header @toggle-sidebar="toggleSidebar" />
+            <Header @toggle-sidebar="toggleSidebar" :isOpen="isSidebarOpen" />
             <header class="bg-white dark:bg-gray-100 shadow" v-if="$slots.header">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     <slot name="header" />
