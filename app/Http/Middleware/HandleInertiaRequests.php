@@ -31,14 +31,17 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
-        $userId = auth()->user()->id;
-        $user = User::find($userId);
         $permissions = [];
-        foreach ($user->role->rolePermissions as $rolePermission) {
-            foreach ($rolePermission->permissions as $permission) {
-                $permissions[] = $permission->name;
+        if (auth()->check()) {
+            $userId = auth()->user()->id;
+            $user = User::find($userId);
+            foreach ($user->role->rolePermissions as $rolePermission) {
+                foreach ($rolePermission->permissions as $permission) {
+                    $permissions[] = $permission->name;
+                }
             }
         }
+
         return [
             ...parent::share($request),
             'auth' => [
