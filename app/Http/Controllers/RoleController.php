@@ -24,10 +24,10 @@ class RoleController extends Controller
             $query = $query->skip(($request->get('page') - 1) * 10)->take(10);
             $data = $query->get();
         } else {
-            $data = $query->take(10);
+            $data = $query->take(10)->get();
         }
 
-        $dataCount = count($data);
+
         $page = (int) ceil($totalDataCount / 10);
         return Inertia::render('Roles/Index', [
             'data' => $data,
@@ -64,6 +64,16 @@ class RoleController extends Controller
     {
         $permissions = Permission::all();
         return Inertia::render('Roles/Edit', [
+            'data' => $role,
+            'permissionsList' => $permissions,
+            'rolePermissions' => $role->rolePermissions
+        ]);
+    }
+
+    public function show(Role $role)
+    {
+        $permissions = Permission::all();
+        return Inertia::render('Roles/Show', [
             'data' => $role,
             'permissionsList' => $permissions,
             'rolePermissions' => $role->rolePermissions

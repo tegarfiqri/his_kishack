@@ -89,6 +89,11 @@ const onDelete = (item) => {
                         <td class="p-4">{{ item.id }}</td>
                         <td class="p-4">{{ item.name }}</td>
                         <td class="p-4">
+                            <Link v-if="checkPermission('Read Roles')"
+                                class="mr-2 bg-purple-400 hover:bg-purple-400 text-white font-bold py-2 px-4 rounded"
+                                :href="route('roles.show', item.id)">View</Link>
+                            <button v-else disabled
+                                class="mr-2 bg-yellow-100 text-white font-bold py-2 px-4 rounded">Edit</button>
                             <Link v-if="checkPermission('Update Roles')"
                                 class="mr-2 bg-yellow-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                                 :href="route('roles.edit', item.id)">Edit</Link>

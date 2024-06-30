@@ -56,6 +56,13 @@ class PermissionController extends Controller
         ]);
     }
 
+    public function show(Permission $permission)
+    {
+        return Inertia::render('Permissions/Show', [
+            'data' => $permission,
+        ]);
+    }
+
     public function update(Request $request, Permission $permission): RedirectResponse
     {
         $request->validate([

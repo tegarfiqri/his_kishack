@@ -78,6 +78,16 @@ class ArticleController extends Controller
         ]);
     }
 
+    public function show($id)
+    {
+        $categories = Category::all();
+        $story = Story::find($id);
+        return Inertia::render('Articles/Show', [
+            'data' => $story,
+            'categories' => $categories
+        ]);
+    }
+
     public function update(Request $request, $id): RedirectResponse
     {
         $story = Story::find($id);

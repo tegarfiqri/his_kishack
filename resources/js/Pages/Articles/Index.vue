@@ -88,13 +88,18 @@ const onDelete = (item) => {
                         <td class="p-4">{{ item.id }}</td>
                         <td class="p-4">{{ item.name }}</td>
                         <td class="p-4">
+                            <Link v-if="checkPermission('Read Master Article')"
+                                class="mr-2 bg-purple-400 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded"
+                                :href="route('articles.show', item.id)">View</Link>
+                            <button v-else disabled
+                                class="mr-2 bg-yellow-100 text-white font-bold py-2 px-4 rounded">View</button>
                             <Link v-if="checkPermission('Update Master Article')"
                                 class="mr-2 bg-yellow-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                                 :href="route('articles.edit', item.id)">Edit</Link>
                             <button v-else disabled
                                 class="mr-2 bg-yellow-100 text-white font-bold py-2 px-4 rounded">Edit</button>
                             <button v-if="checkPermission('Delete Master Article')" @click="onDelete(item)"
-                                class="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Delete
+                                class="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 text-sm rounded">Delete
                             </button>
                             <button v-else disabled
                                 class="mr-2 bg-red-100 text-white font-bold py-2 px-4 rounded">Delete</button>

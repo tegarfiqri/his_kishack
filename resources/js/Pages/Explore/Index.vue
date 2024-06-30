@@ -62,9 +62,9 @@ const repopulateData = () => {
                 <CreateButton :route="route('articles.index')" v-if="checkPermission('Create Master Article')">Create
                     Article</CreateButton>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 lg:gap-8 w-full">
+            <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 w-full">
                 <div v-for="article in data" :key="article.id" :article="article">
-                    <Link :href="checkPermission('Read Master Article') ? route('articles.edit', article.id) : '#'">
+                    <Link :href="checkPermission('Read Master Article') ? route('explore.show', article.id) : '#'">
                     <StoryCard>
                         <div class="flex flex-col flex-1 p-4 h-96">
                             <img :src="'/' + article.image_path" alt="" class="w-full h-40 object-cover">

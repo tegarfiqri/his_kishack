@@ -80,6 +80,15 @@ class UserController extends Controller
         ]);
     }
 
+    public function show(User $user)
+    {
+        $role = Role::all();
+        return Inertia::render('Users/Show', [
+            'data' => $user,
+            'roles' => $role
+        ]);
+    }
+
     public function update(Request $request, User $user): RedirectResponse
     {
         $request->validate([
