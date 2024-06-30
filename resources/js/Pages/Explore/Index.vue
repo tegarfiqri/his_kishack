@@ -72,7 +72,7 @@ const repopulateData = () => {
                                 <h2 class="text-xl font-bold">{{ article.name }}</h2>
                                 <p>{{ moment(article.created_at).format('DD MMM YYYY') }}</p>
                             </div>
-                            <p>{{ article.content.length > 100 ? article.content.substring(0, 70) + '...' :
+                            <p>{{ article.content.length > 200 ? article.content.substring(0, 200) + '...' :
                                 article.content
                                 }}</p>
                             <div class="mt-auto">
