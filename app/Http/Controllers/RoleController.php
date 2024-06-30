@@ -22,9 +22,11 @@ class RoleController extends Controller
         }
         if ($request->has('page') && $request->get('page') != '') {
             $query = $query->skip(($request->get('page') - 1) * 10)->take(10);
+            $data = $query->get();
+        } else {
+            $data = $query->take(10);
         }
 
-        $data = $query->get();
         $dataCount = count($data);
         $page = (int) ceil($totalDataCount / 10);
         return Inertia::render('Roles/Index', [

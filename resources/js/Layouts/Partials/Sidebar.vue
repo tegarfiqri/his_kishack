@@ -25,6 +25,9 @@ import { Link } from '@inertiajs/vue3';
                 <li class="hover:bg-gray-700">
                     <Link class="p-4 block" :href="route('roles.index')">Role</Link>
                 </li>
+                <li class="hover:bg-gray-700">
+                    <Link class="p-4 block" :href="route('permissions.index')">Permission</Link>
+                </li>
             </ul>
 
             <div class="pt-4">
