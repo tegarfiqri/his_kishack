@@ -24,38 +24,38 @@ git clone https://github.com/tegarfiqri/his_kishack.git
 cd/his_kishack
 ```
 
-###2. Install Backend Dependencies
+### 2. Install Backend Dependencies
 Use Composer to install PHP dependencies:
 ```bash
 composer install
 ```
 
-###3 Install Frontend Dependencies
+### 3 Install Frontend Dependencies
 Use npm to install JavaScript dependencies
 ```bash
 npm install
 ```
 
-###4 Set Up Environment Variables
+### 4 Set Up Environment Variables
 copy .env.example and rename it to .env
 modify the file and set the host, database, and password so the application can access the database
 also change the value of APP_URL variable to http://localhost:8000
 
-###5 Generate Application Key
+### 5 Generate Application Key
 ```bash
 php artisan key:generate
 ```
 
-###6 Run Database Migrations and Populate The Database Using Seeder
+### 6 Run Database Migrations and Populate The Database Using Seeder
 ```bash
 php artisan migrate --seed
 ```
 
-###7 Compile Assets and Run the application
+### 7 Compile Assets and Run the application
 ```bash
 npm run dev
 php artisan serve
 ```
 
-###8 Access the Application
+### 8 Access the Application
 after running php artisan serve, access the application by visiting http://localhost:8000 or copy the server address that shown by the command line
