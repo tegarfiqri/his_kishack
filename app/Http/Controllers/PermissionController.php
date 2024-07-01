@@ -34,6 +34,9 @@ class PermissionController extends Controller
 
     public function create()
     {
+        if (!app('userCan')('Create Permissions')) {
+            return redirect()->route('unauthorized');
+        }
         return Inertia::render('Permissions/Create', []);
     }
 
@@ -51,6 +54,9 @@ class PermissionController extends Controller
 
     public function edit(Permission $permission)
     {
+        if (!app('userCan')('Update Permissions')) {
+            return redirect()->route('unauthorized');
+        }
         return Inertia::render('Permissions/Edit', [
             'data' => $permission,
         ]);
@@ -58,6 +64,9 @@ class PermissionController extends Controller
 
     public function show(Permission $permission)
     {
+        if (!app('userCan')('Read Permissions')) {
+            return redirect()->route('unauthorized');
+        }
         return Inertia::render('Permissions/Show', [
             'data' => $permission,
         ]);
@@ -80,5 +89,10 @@ class PermissionController extends Controller
     public function destroy(Permission $permission): void
     {
         $permission->delete();
+    }
+
+    public function unauthorized()
+    {
+        return Inertia::render('Permissions/Unauthorized', []);
     }
 }

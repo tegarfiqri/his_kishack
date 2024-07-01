@@ -11,9 +11,22 @@ class PermissionCheckServiceProvider extends ServiceProvider
     /**
      * Register services.
      */
-    public function register(): void
+    public function register()
     {
-        //
+        $this->app->bind('userCan', function ($app) {
+            return function ($check) {
+                $user = Auth::user();
+                $permissions = [];
+                foreach ($user->role->rolePermissions as $rolePermission) {
+                    foreach ($rolePermission->permissions as $permission) {
+                        $permissions[] = $permission->name;
+                    }
+                }
+
+                return in_array($check, $permissions);
+                // return $permissions;
+            };
+        });
     }
 
     /**
@@ -21,9 +34,5 @@ class PermissionCheckServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Define a function to be shared across all views
-        View::share('sharedFunction', function ($param) {
-            return "Shared Function Output: " . $param;
-        });
     }
 }

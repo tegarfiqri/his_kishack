@@ -34,6 +34,9 @@ class CategoryController extends Controller
 
     public function create()
     {
+        if (!app('userCan')('Create Master Category')) {
+            return redirect()->route('unauthorized');
+        }
         return Inertia::render('Categories/Create', []);
     }
 
@@ -51,8 +54,21 @@ class CategoryController extends Controller
         return redirect()->route('categories.index');
     }
 
+    public function show(Category $category)
+    {
+        if (!app('userCan')('Read Master Category')) {
+            return redirect()->route('unauthorized');
+        }
+        return Inertia::render('Categories/Show', [
+            'data' => $category,
+        ]);
+    }
+
     public function edit(Category $category)
     {
+        if (!app('userCan')('Update Master Category')) {
+            return redirect()->route('unauthorized');
+        }
         return Inertia::render('Categories/Edit', [
             'data' => $category,
         ]);

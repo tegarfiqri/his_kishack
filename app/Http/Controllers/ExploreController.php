@@ -13,7 +13,6 @@ class ExploreController extends Controller
     public function index(Request $request)
     {
         $query = new Story;
-        $totalDataCount = $query->count();
         if ($request->has('search') && $request->get('search') != '') {
             $query = $query->where('name', 'like', "%{$request->get('search')}%");
         }
@@ -33,6 +32,9 @@ class ExploreController extends Controller
 
     public function show($id)
     {
+        if (!app('userCan')('Read Master Article')) {
+            return redirect()->route('explore.index');
+        }
         $story = Story::with('category')->find($id);
         return Inertia::render('Explore/Show', [
             'story' => $story

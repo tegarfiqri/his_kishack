@@ -39,6 +39,9 @@ class UserController extends Controller
 
     public function create()
     {
+        if (!app('userCan')('Create Users')) {
+            return redirect()->route('unauthorized');
+        }
         $role = Role::all();
         return Inertia::render('Users/Create', [
             'roles' => $role
@@ -51,6 +54,8 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|lowercase|email|max:255|unique:' . User::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'role_id' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $image = $request->file('image');
@@ -73,6 +78,9 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
+        if (!app('userCan')('Update Users')) {
+            return redirect()->route('unauthorized');
+        }
         $role = Role::all();
         return Inertia::render('Users/Edit', [
             'data' => $user,
@@ -82,6 +90,9 @@ class UserController extends Controller
 
     public function show(User $user)
     {
+        if (!app('userCan')('Read Users')) {
+            return redirect()->route('unauthorized');
+        }
         $role = Role::all();
         return Inertia::render('Users/Show', [
             'data' => $user,

@@ -1,5 +1,6 @@
 <script setup>
 import { Link } from '@inertiajs/vue3';
+import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 
 </script>
 
@@ -9,7 +10,9 @@ import { Link } from '@inertiajs/vue3';
         isOpen ? 'lg:relative lg:translate-x-0' : '-translate-x-full fixed',
         'w-64 flex-none'
     ]">
-        <div class="p-4 text-2xl text-blue-500 font-bold">Kishack</div>
+        <Link :href="route('explore.index')" class="flex justify-center">
+        <img class="block h-16 w-auto" src="/assets/app_logo.png" alt="Workflow">
+        </Link>
         <div class="py-4">
             <ul>
                 <li class="hover:bg-gray-700">

@@ -14,7 +14,7 @@ const props = defineProps({
 })
 </script>
 <template>
-    <nav class="bg-gradient-to-t from-blue-800 to-blue-600 border-b border-gray-100 flex-1 flex flex-col">
+    <nav class="bg-gradient-to-b from-blue-200 to-blue-100 border-b border-gray-100 flex-1 flex flex-col">
         <!-- Primary Navigation Menu -->
         <div class="px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">

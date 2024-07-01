@@ -38,6 +38,9 @@ class RoleController extends Controller
 
     public function create()
     {
+        if (!app('userCan')('Create Roles')) {
+            return redirect()->route('unauthorized');
+        }
         $permissions = Permission::all();
         return Inertia::render('Roles/Create', [
             'permissions' => $permissions
@@ -62,6 +65,9 @@ class RoleController extends Controller
 
     public function edit(Role $role)
     {
+        if (!app('userCan')('Update Roles')) {
+            return redirect()->route('unauthorized');
+        }
         $permissions = Permission::all();
         return Inertia::render('Roles/Edit', [
             'data' => $role,
@@ -72,6 +78,9 @@ class RoleController extends Controller
 
     public function show(Role $role)
     {
+        if (!app('userCan')('Read Roles')) {
+            return redirect()->route('unauthorized');
+        }
         $permissions = Permission::all();
         return Inertia::render('Roles/Show', [
             'data' => $role,

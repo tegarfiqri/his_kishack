@@ -11,6 +11,7 @@ class ApiController extends Controller
     {
         $userId = auth()->user()->id;
         $user = User::find($userId);
+        $permissions = [];
         foreach ($user->role->rolePermissions as $rolePermission) {
             foreach ($rolePermission->permissions as $permission) {
                 $permissions[] = $permission->name;

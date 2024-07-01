@@ -36,6 +36,9 @@ class ArticleController extends Controller
 
     public function create()
     {
+        if (!app('userCan')('Create Master Article')) {
+            return redirect()->route('unauthorized');
+        }
         $categories = Category::all();
         return Inertia::render('Articles/Create', [
             'categories' => $categories
@@ -70,6 +73,9 @@ class ArticleController extends Controller
 
     public function edit($id)
     {
+        if (!app('userCan')('Update Master Article')) {
+            return redirect()->route('unauthorized');
+        }
         $categories = Category::all();
         $story = Story::find($id);
         return Inertia::render('Articles/Edit', [
@@ -80,6 +86,9 @@ class ArticleController extends Controller
 
     public function show($id)
     {
+        if (!app('userCan')('Read Master Article')) {
+            return redirect()->route('unauthorized');
+        }
         $categories = Category::all();
         $story = Story::find($id);
         return Inertia::render('Articles/Show', [
